@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const fs = require('fs');
+const path = require('path');
 const config = require('../lib/config');
 const api = require('../lib/api');
 
@@ -44,4 +46,58 @@ const update = () => {
 	console.log(chalk.yellow('You are already on the latest version.'));
 };
 
-module.exports = { login, usage, update };
+const configOptions = async () => {
+	const { prompt } = inquirer;
+	const answers = await inquirer.prompt([
+		{ type: 'list', name: 'action', message: 'Config option:', choices: ['View API Key', 'Reset API Key', 'View Config'] }
+	]);
+
+	if (answers.action === 'View API Key') {
+		const key = config.get('apiKey') || 'N/A';
+		console.log(chalk.yellow(`Stored API Key: ${key}`));
+	} else if (answers.action === 'Reset API Key') {
+		config.delete('apiKey');
+		console.log(chalk.red('API Key has been removed. Please run gapsyai login again.'));
+	} else {
+		console.log(chalk.bold('\nGapsyAI CLI Config:'));
+		console.log(chalk.gray(JSON.stringify(config.all, null, 2)));
+	}
+};
+
+const init = async () => {
+	console.log(chalk.bold.cyan('\n🚀 GapsyAI Project Initialization\n'));
+
+	const answers = await inquirer.prompt([
+		{
+			type: 'input',
+			name: 'name',
+			message: 'Project Name:',
+			default: path.basename(process.cwd())
+		},
+		{
+			type: 'list',
+			name: 'engine',
+			message: 'Game Engine:',
+			choices: ['Unity', 'Unreal Engine', 'Godot', 'Other']
+		},
+		{
+			type: 'input',
+			name: 'scriptsPath',
+			message: 'Primary Scripts Directory:',
+			default: './Scripts'
+		}
+	]);
+
+	const gapsyConfig = {
+		...answers,
+		version: '1.0.0',
+		initializedAt: new Date().toISOString()
+	};
+
+	fs.writeFileSync('.gapsy', JSON.stringify(gapsyConfig, null, 2));
+
+	console.log(chalk.green('\n✔ .gapsy configuration file created!'));
+	console.log(chalk.gray('This context will now be used for AI generators and analyzers.\n'));
+};
+
+module.exports = { login, usage, update, config: configOptions, init };

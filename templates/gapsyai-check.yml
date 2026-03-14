@@ -1,0 +1,27 @@
+name: GapsyAI Logic Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install GapsyAI CLI
+      run: npm install -g gapsyaicli
+
+    - name: Neural Scan
+      run: gapsyai monitor
+      env:
+        GAPSY_API_KEY: ${{ secrets.GAPSY_API_KEY }}
