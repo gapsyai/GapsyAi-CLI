@@ -9,8 +9,12 @@ const generators = require('./commands/generators');
 const analyzers = require('./commands/analyzers');
 const utils = require('./commands/utils');
 
-// Check for updates
-updateNotifier({ pkg }).notify();
+// Check for updates on startup
+const notifier = updateNotifier({ pkg });
+if (notifier.update) {
+	console.log(chalk.yellow(`\n[!] GapsyAI Update Available: ${notifier.update.latest}`));
+	console.log(chalk.gray(`Run 'gapsyai update' to install the latest version.\n`));
+}
 
 program
 	.name('gapsyai')
@@ -163,6 +167,105 @@ program
 	.description('Run automated CI/CD checks for bugs and balance')
 	.action(analyzers.monitor);
 
+program
+	.command('chat [message]')
+	.description('Chat with GapsyAI to get help or instructions')
+	.action(generators.chat);
+
+program
+	.command('migrate <file>')
+	.description('Migrate game logic between engines (e.g., Unity to Godot)')
+	.option('-t, --target <engine>', 'Target engine (unity, unreal, godot)', 'godot')
+	.action(generators.migrate);
+
+program
+	.command('sfx <prompt>')
+	.description('Generate technical sound and VFX prompts')
+	.action(generators.sfx);
+
+program
+	.command('map')
+	.description('Generate procedural ASCII game maps')
+	.option('-s, --size <size>', 'Map size (e.g., 50x50)', '30x20')
+	.option('-b, --biome <biome>', 'Biome type (dungeon, forest, cave)', 'dungeon')
+	.action(generators.map);
+
+program
+	.command('voice <npc_name>')
+	.description('Generate a character voice and personality guide')
+	.action(generators.voice);
+
+program
+	.command('visualize <type>')
+	.description('Generate visual diagrams (story, quest, logic)')
+	.action(generators.visualize);
+
+program
+	.command('hooks <action>')
+	.description('Manage Git hooks for GapsyAI (e.g., setup)')
+	.action(utils.hooks);
+
+program
+	.command('index')
+	.description('Index project files for local AI context (RAG)')
+	.action(analyzers.indexProject);
+
+// Pro Dashboard Integration
+program
+	.command('pulse')
+	.description('Get high-level project health metrics from GapsyAI Dashboard')
+	.action(analyzers.pulse);
+
+program
+	.command('export-quest <file>')
+	.description('Push quest logic to the GapsyAI Visual Quest Graph')
+	.action(generators.exportQuest);
+
+program
+	.command('heatmap-view')
+	.description('View CLI-rendered heatmap from your latest playtest')
+	.action(analyzers.heatmapView);
+
+program
+	.command('team-activity')
+	.description('View recent AI activity from your team members')
+	.action(utils.teamActivity);
+
+program
+	.command('knowledge <action> [input]')
+	.description('Manage team-wide AI Knowledge Base (Shared Brains)')
+	.action(utils.knowledge);
+
+program
+	.command('world-bridge')
+	.description('Sync local world design ideas to the World Builder module')
+	.action(generators.worldBridge);
+
+program
+	.command('commit')
+	.description('Generate AI commit messages for staged changes')
+	.action(generators.commit);
+
+program
+	.command('test-gen <file>')
+	.description('Automatically generate unit tests for a script')
+	.action(generators.testGen);
+
+program
+	.command('comment <file>')
+	.description('Automatically add technical comments to your code')
+	.action(analyzers.comment);
+
+program
+	.command('audit')
+	.description('Audit project dependencies and build size optimization')
+	.action(analyzers.audit);
+
+program
+    .command('blueprint <prompt>')
+    .description('Generate a complete game system boilerplate (e.g., "Multiplayer Lobby")')
+    .action(generators.blueprint);
+
 // Utility Commands
 program
 	.command('brain <name>')
@@ -190,8 +293,8 @@ program
 	.action(utils.update);
 
 program
-	.command('config')
-	.description('Manage CLI configuration')
+	.command('config [action] [key] [value]')
+	.description('Manage CLI configuration (interactive or via set/get)')
 	.action(utils.config);
 
 program.parse(process.argv);

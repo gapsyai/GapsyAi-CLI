@@ -1,8 +1,10 @@
 # GapsyAI CLI ⚡
 
-> AI CLI for Game Development
+> The First Forever-Free AI CLI for Game Devs.
 
 GapsyAI CLI is a powerful command-line tool designed to streamline game development workflows. Generate procedural assets, analyze scripts for bugs, and automate CI/CD checks directly from your terminal.
+
+**Why Free?** We believe developers shouldn't pay for CLI tools. Use your own AI keys (Gemini, OpenAI, Ollama) and keep your workflow local. Upgrade to GapsyAI Pro for visual dashboards and advanced reporting.
 
 ## 🚀 Quick Start
 
@@ -14,17 +16,16 @@ Install the CLI globally using npm:
 npm install -g gapsyaicli
 ```
 
-*Note: If you are developing locally, run `npm link` inside the project directory.*
+### Configuration (Bring Your Own Key)
 
-### Authentication
-
-Initialize your connection by providing your GapsyAI API key:
+Unlike other tools, GapsyAI CLI lets you choose your AI provider. Set up your provider and API key:
 
 ```bash
-gapsyai login
+gapsyai config set provider gemini
+gapsyai config set apiKey YOUR_GEMINI_API_KEY
 ```
 
-You can find your API key in the GapsyAI Dashboard settings.
+*Supported Providers: gemini, openai, ollama (local), custom.*
 
 ## ❓ CLI Help
 
@@ -56,6 +57,8 @@ Generate game assets and logic using AI.
 | `jam` | Generate ideas for game jams | `gapsyai jam` |
 | `trailer` | Generate YouTube scripts and marketing hooks | `gapsyai trailer` |
 | `patchnotes` | Generate developer release notes from Git commits | `gapsyai patchnotes` |
+| `chat` | **[NEW]** Interactive AI chat for game dev help | `gapsyai chat "Help me with quest design"` |
+| `blueprint` | **[NEW]** Generate complete game system boilerplate | `gapsyai blueprint "Lobby System"` |
 
 ### Analyzers (`gapsyai <command>`)
 
@@ -76,6 +79,7 @@ Analyze and optimize your project for performance and balance.
 | `playtest` | Simulate player behavior and difficulty | `gapsyai playtest` |
 | `multiplayer` | Help with lobby, matchmaking, and sync logic| `gapsyai multiplayer`|
 | `monitor` | Run automated CI/CD quality checks | `gapsyai monitor` |
+| `index` | **[NEW]** Index project for local AI context (RAG) | `gapsyai index` |
 
 ### Utilities
 
@@ -87,7 +91,10 @@ Manage your GapsyAI CLI state.
 - `translate <file>`: Localize dialogue files into ES, JP, CH.
 - `usage`: Check your AI usage and limits.
 - `config`: Manage CLI configuration and endpoints.
-- `update`: Update the CLI to the latest version.
+- `chat`: Interactive AI chat with Smart Actions.
+- `index`: Index project files for better AI context.
+- `hooks setup`: Install Git hooks for auto-monitoring.
+- `update`: Check and install latest updates.
 - `version`: Display the current version.
 
 ## 📖 Example Usage
@@ -104,9 +111,11 @@ Choices:
 3. I will find it myself
 ```
 
-## 🧠 AI Engine
+## 🧠 AI Engine & Smart Actions
 
-GapsyAI CLI is powered by the **GapsyAI Engine**, an AI system designed specifically for game development workflows. It helps developers generate scripts, analyze game logic, design quests, and simulate gameplay mechanics directly from the terminal.
+GapsyAI CLI is powered by the **GapsyAI Engine**, an AI system designed specifically for game development workflows. 
+
+**Smart Actions**: The new `gapsyai chat` mode supports "Smart Actions." You can simply ask GapsyAI to "Generate a quest for me" or "Analyze this file for bugs," and it will automatically trigger the corresponding CLI command for you.
 
 ## 🎮 Supported Engines
 
@@ -147,6 +156,20 @@ Automate your quality checks using GitHub Actions:
     gapsyai analyze
     gapsyai balance
 ```
+
+## 💎 GapsyAI Platform (Premium)
+
+While the CLI is free, the **GapsyAI Web Dashboard** provides premium visual tools for Pro and Studio members:
+
+- **Visual Quest Graph (Pro)**: Design narrative flows on an interactive canvas.
+- **AI Live Debugger (Pro)**: Get 1-click fixes for runtime errors.
+- **Cloud Dialogue DB (Pro)**: Store and fetch PCG dialogues at runtime.
+- **Behavior Tree Architect (Pro)**: Design NPC logic visually.
+- **AI Playtest Bots (Studio)**: Stress-test your game with automated bots.
+- **Asset Intelligence (Pro)**: Visual diff and versioning for 3D assets.
+- **AI Playtest Reports (Pro)**: Get behavior heatmaps and difficulty spike graphs.
+
+[Explore GapsyAI Pro →](https://gapsyai.com/plans)
 
 ## 🤝 Contributing
 

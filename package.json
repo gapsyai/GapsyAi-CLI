@@ -1,12 +1,12 @@
 {
   "name": "gapsyaicli",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "GapsyAI CLI - The definitive AI orchestration layer for game architects.",
   "main": "index.js",
-  "homepage": "https://gapsyai.io",
+  "homepage": "https://gapsyai.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gapsyai/cli"
+    "url": "git+https://github.com/gapsyai/GapsyAi-CLI.git"
   },
   "bin": {
     "gapsyai": "./index.js"
@@ -15,9 +15,15 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "ai",
+    "gamedev",
+    "cli",
+    "orchestration",
+    "game architects"
+  ],
+  "author": "GapsyAI Team",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "axios": "^1.13.6",
