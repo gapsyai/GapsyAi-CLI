@@ -7,12 +7,32 @@ const api = require('../lib/api');
 
 const getModelsForProvider = (provider) => {
 	const models = {
-		ai_core: ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'],
+		ai_core: [], // Will be fetched dynamically
 		openai: ['gpt-4o', 'gpt-4-turbo', 'gpt-3.5-turbo'],
 		ollama: ['llama3', 'mistral', 'codellama', 'phi3'],
 		gapsyai: ['gapsy-v1-standard', 'gapsy-v1-pro']
 	};
 	return models[provider] || [];
+};
+
+const fetchModels = async (provider, apiKey) => {
+	console.log(chalk.blue(`Fetching available models for ${provider.toUpperCase()}...`));
+	try {
+		if (provider === 'ai_core') {
+			const axios = require('axios');
+			const response = await axios.get(`https://generativelanguage.googleapis.com/v1/models?key=${apiKey}`);
+			return response.data.models
+				.filter(m => m.supportedGenerationMethods.includes('generateContent'))
+				.map(m => m.name.replace('models/', ''));
+		}
+		// Fallback to static list for other providers for now
+		return getModelsForProvider(provider);
+	} catch (error) {
+		console.error(chalk.yellow(`\n⚠ Could not fetch live models: ${error.message}. Switching to defaults.`));
+		// Return defaults based on provider
+		if (provider === 'ai_core') return ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'];
+		return getModelsForProvider(provider);
+	}
 };
 
 const login = async () => {
@@ -94,7 +114,7 @@ const login = async () => {
 			config.set(`providerKeys.${provider}`, apiKey);
 		}
 
-		const models = getModelsForProvider(provider);
+		const models = await fetchModels(provider, apiKey);
 		if (models.length > 0) {
 			const { model } = await inquirer.prompt([
 				{
