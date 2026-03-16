@@ -1,4 +1,4 @@
-# GapsyAI CLI ⚡ [v3.0.5 Deep Evolution]
+# GapsyAI CLI ⚡ [v3.0.6 Deep Evolution]
 
 > The First Forever-Free AI CLI for Game Devs with Pro Visual Intelligence.
 
