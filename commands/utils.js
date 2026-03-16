@@ -7,7 +7,7 @@ const api = require('../lib/api');
 
 const getModelsForProvider = (provider) => {
 	const models = {
-		gemini: ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'],
+		ai_core: ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'],
 		openai: ['gpt-4o', 'gpt-4-turbo', 'gpt-3.5-turbo'],
 		ollama: ['llama3', 'mistral', 'codellama', 'phi3'],
 		gapsyai: ['gapsy-v1-standard', 'gapsy-v1-pro']
@@ -16,38 +16,102 @@ const getModelsForProvider = (provider) => {
 };
 
 const login = async () => {
-	const answers = await inquirer.prompt([
+	const { connectionType } = await inquirer.prompt([
 		{
-			type: 'input',
-			name: 'apiKey',
-			message: 'Enter your GapsyAI API Key:',
-			validate: value => value.length > 0 ? true : 'Please enter an API key.'
+			type: 'list',
+			name: 'connectionType',
+			message: 'How would you like to connect?',
+			choices: [
+				{ name: 'GapsyAI.com (Recommended - Cloud features & RAG)', value: 'gapsyai' },
+				{ name: 'Direct API Connection (BYOK - Gemini, OpenAI, etc.)', value: 'byok' }
+			]
 		}
 	]);
 
-	console.log(chalk.blue('Verifying API Key...'));
-	try {
-		const response = await api.get('/cli/usage', {
-			headers: { 'X-API-KEY': answers.apiKey }
-		});
-		config.set('apiKey', answers.apiKey);
-		config.set('provider', 'gapsyai');
-		
-		const models = getModelsForProvider('gapsyai');
-		const { model } = await inquirer.prompt([
+	if (connectionType === 'gapsyai') {
+		const answers = await inquirer.prompt([
 			{
-				type: 'list',
-				name: 'model',
-				message: 'Select GapsyAI Model:',
-				choices: models
+				type: 'input',
+				name: 'apiKey',
+				message: 'Enter your GapsyAI API Key:',
+				validate: value => value.length > 0 ? true : 'Please enter an API key.'
 			}
 		]);
-		config.set('model', model);
-		config.set('providerModels.gapsyai', model);
 
-		console.log(chalk.green('✔ API Key verified and Model selected successfully!'));
-	} catch (error) {
-		console.error(chalk.red('✘ Invalid API Key. Please check your token and try again.'));
+		console.log(chalk.blue('Verifying API Key...'));
+		try {
+			const response = await api.get('/cli/usage', {
+				headers: { 'X-API-KEY': answers.apiKey }
+			});
+			config.set('apiKey', answers.apiKey);
+			config.set('provider', 'gapsyai');
+			
+			const models = getModelsForProvider('gapsyai');
+			const { model } = await inquirer.prompt([
+				{
+					type: 'list',
+					name: 'model',
+					message: 'Select GapsyAI Model:',
+					choices: models
+				}
+			]);
+			config.set('model', model);
+			config.set('providerModels.gapsyai', model);
+
+			console.log(chalk.green('✔ API Key verified and Model selected successfully!'));
+		} catch (error) {
+			console.error(chalk.red('✘ Invalid API Key. Please check your token and try again.'));
+		}
+	} else {
+		const { provider } = await inquirer.prompt([
+			{
+				type: 'list',
+				name: 'provider',
+				message: 'Select AI Provider:',
+				choices: [
+					{ name: 'Google Gemini (AI Core)', value: 'ai_core' },
+					{ name: 'OpenAI (GPT-4o, etc.)', value: 'openai' },
+					{ name: 'Ollama (Local AI)', value: 'ollama' }
+				]
+			}
+		]);
+
+		let apiKey = '';
+		if (provider !== 'ollama') {
+			const answers = await inquirer.prompt([
+				{
+					type: 'input',
+					name: 'apiKey',
+					message: `Enter your ${provider.toUpperCase()} API Key:`,
+					validate: value => value.length > 0 ? true : 'Please enter an API key.'
+				}
+			]);
+			apiKey = answers.apiKey;
+		}
+
+		config.set('provider', provider);
+		if (apiKey) {
+			config.set(`providerKeys.${provider}`, apiKey);
+		}
+
+		const models = getModelsForProvider(provider);
+		if (models.length > 0) {
+			const { model } = await inquirer.prompt([
+				{
+					type: 'list',
+					name: 'model',
+					message: `Select ${provider} Model:`,
+					choices: models
+				}
+			]);
+			config.set('model', model);
+			config.set(`providerModels.${provider}`, model);
+		}
+
+		console.log(chalk.green(`✔ Connected to ${provider} successfully!`));
+		if (provider === 'ai_core') {
+			console.log(chalk.gray('Note: You can now use "gapsyai idea" or "gapsyai chat" with your Gemini key.'));
+		}
 	}
 };
 
@@ -106,7 +170,7 @@ const configOptions = async (action, key, value) => {
 		// Basic mapping for user-friendly keys mentioned in README
 		let finalKey = key;
 		if (key === 'apiKey' && config.get('provider') !== 'gapsyai') {
-			const provider = config.get('provider') || 'gemini';
+			const provider = config.get('provider') || 'ai_core';
 			finalKey = `providerKeys.${provider}`;
 		}
 
@@ -162,7 +226,7 @@ const configOptions = async (action, key, value) => {
 				type: 'list', 
 				name: 'provider', 
 				message: 'Select AI Provider:', 
-				choices: ['gapsyai', 'gemini', 'openai', 'ollama', 'custom'] 
+				choices: ['gapsyai', 'ai_core', 'openai', 'ollama', 'custom'] 
 			}
 		]);
 		config.set('provider', provider);
@@ -183,7 +247,7 @@ const configOptions = async (action, key, value) => {
 				type: 'list', 
 				name: 'provider', 
 				message: 'For which provider?', 
-				choices: ['gemini', 'openai'] 
+				choices: ['ai_core', 'openai'] 
 			},
 			{
 				type: 'input',
@@ -249,6 +313,19 @@ const init = async () => {
 			name: 'scriptsPath',
 			message: 'Primary Scripts Directory:',
 			default: './Scripts'
+		},
+		{
+			type: 'confirm',
+			name: 'enableSDK',
+			message: 'Enable Neural SDK Integration?',
+			default: true
+		},
+		{
+			type: 'input',
+			name: 'sdkProjectID',
+			message: 'Neural SDK Project Identifier:',
+			default: path.basename(process.cwd()),
+			when: (answers) => answers.enableSDK
 		}
 	]);
 

@@ -1,0 +1,391 @@
+﻿node.exe :   
+console.log
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (  console.log   
+ :String) [], Remot    
+eException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+    
+    Explaining 
+combat.cs...
+
+      at Object.log 
+[as explain] (commands/
+analyzers.js:100:10)
+
+  console.log
+    
+    Explanation:
+
+      at Object.log 
+[as explain] (commands/
+analyzers.js:108:11)
+
+  console.log
+    Mocked Workflow 
+Output
+
+      at Object.log 
+[as explain] (commands/
+analyzers.js:109:11)
+
+  console.error
+    Please specify a 
+script file. Example: 
+gapsyai explain 
+player.cs
+
+    [0m [90m 86 
+|[39m [36mconst[39m 
+explain [33m=[39m 
+[36masync[39m (file) 
+[33m=>[39m {
+     [90m 87 |[39m 	
+[36mif[39m 
+([33m![39mfile) {
+    [31m[1m>[22m[39
+m[90m 88 |[39m 		cons
+ole[33m.[39merror(cha
+lk[33m.[39mred([32m'
+Please specify a 
+script file. Example: 
+gapsyai explain player.
+cs'[39m))[33m;[39m
+     [90m    |[39m 		
+        
+[31m[1m^[22m[39m
+     [90m 89 |[39m 		
+[36mreturn[39m[33m;
+[39m
+     [90m 90 |[39m 	}
+     [90m 91 
+|[39m[0m
+
+      at Object.error 
+[as explain] (commands/
+analyzers.js:88:11)
+      at 
+Object.explain (tests/w
+orkflow_cloud.test.js:3
+9:25)
+
+  console.log
+    
+    Optimizing 
+physics.cs...
+
+      at Object.log 
+[as optimize] (commands
+/analyzers.js:129:10)
+
+  console.log
+    
+    Optimization 
+Suggestions:
+
+      at Object.log 
+[as optimize] (commands
+/analyzers.js:137:11)
+
+  console.log
+    Mocked Workflow 
+Output
+
+      at Object.log 
+[as optimize] (commands
+/analyzers.js:138:11)
+
+  console.log
+    
+    ≡ƒîÉ Localizing 
+player.cs...
+
+      at Object.log 
+[as translate] (command
+s/analyzers.js:350:10)
+
+  console.log
+    Γ£ö Localization 
+complete. Output saved 
+to translated_player.cs
+
+      at Object.log 
+[as translate] (command
+s/analyzers.js:363:11)
+
+  console.log
+    
+    ≡ƒîÉ Localizing 
+undefined...
+
+      at Object.log 
+[as translate] (command
+s/analyzers.js:350:10)
+
+  console.log
+    Γ£ö Localization 
+complete. Output saved 
+to translated_undefined
+
+      at Object.log 
+[as translate] (command
+s/analyzers.js:363:11)
+
+  console.log
+    
+    ≡ƒÆ¼ GapsyAI 
+Interactive Chat Mode
+
+      at Object.log 
+[as chat] (commands/gen
+erators.js:239:10)
+
+  console.log
+    Type "exit" or 
+"quit" to end the 
+session.
+
+      at Object.log 
+[as chat] (commands/gen
+erators.js:240:10)
+
+  console.log
+    
+    Syncing with 
+GapsyAI World 
+Builder...
+
+      at Object.log 
+[as worldBridge] (comma
+nds/generators.js:431:1
+0)
+
+  console.log
+    Γ£ö Project 
+context synced. Your 
+Visual World Builder 
+is now ready!
+
+      at Object.log 
+[as worldBridge] (comma
+nds/generators.js:435:1
+1)
+
+FAIL tests/workflow_clo
+ud.test.js
+  CLI Workflow Commands
+    ΓêÜ explain 
+command explains code 
+logic (17 ms)
+    ΓêÜ explain 
+returns early when no 
+file given (6 ms)
+    ΓêÜ optimize 
+workflow command 
+optimizes code (2 ms)
+  CLI Translate Command
+    ΓêÜ translate 
+command converts code 
+between languages (2 
+ms)
+    ├ù translate 
+returns early without 
+file (3 ms)
+  CLI Advanced Features
+    ├ù chat command 
+works (4 ms)
+    ├ù worldBridge 
+command works (3 ms)
+
+  ΓùÅ CLI Translate 
+Command ΓÇ║ translate 
+returns early without 
+file
+
+    expect(jest.fn()).n
+ot.toHaveBeenCalled()
+
+    Expected number of 
+calls: 0
+    Received number of 
+calls: 1
+
+    1: {"data": 
+{"content": "void 
+Start() {}", 
+"filename": 
+undefined}, 
+"endpoint": 
+"/cli/translate", 
+"prompt": "Translate 
+the content of this 
+file to multiple 
+languages (ES, FR, DE, 
+JP, HI):┬╖
+    void Start() {}", 
+"systemInstruction": 
+"You are a 
+professional game 
+localizer. Maintain 
+tone and variable 
+placeholders."}
+
+    [0m [90m 65 
+|[39m     
+test([32m'translate 
+returns early without 
+file'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 66 |[39m   
+      [36mawait[39m a
+nalyzers[33m.[39mtran
+slate()[33m;[39m
+    [31m[1m>[22m[39
+m[90m 67 |[39m       
+  expect(ai[33m.[39mg
+enerate)[33m.[39mnot
+[33m.[39mtoHaveBeenCal
+led()[33m;[39m
+     [90m    |[39m   
+                       
+       
+[31m[1m^[22m[39m
+     [90m 68 |[39m   
+  })[33m;[39m
+     [90m 69 |[39m 
+})[33m;[39m
+     [90m 70 
+|[39m[0m
+
+      at Object.toHaveB
+eenCalled (tests/workfl
+ow_cloud.test.js:67:33)
+
+  ΓùÅ CLI Advanced 
+Features ΓÇ║ chat 
+command works
+
+    TypeError: process.
+stdout.clearLine is 
+not a function
+
+    [0m [90m 291 
+|[39m 			lastResponse 
+[33m=[39m 
+cleanOutput[33m;[39m
+     [90m 292 |[39m 	
+	} [36mcatch[39m 
+(error) {
+    [31m[1m>[22m[39
+m[90m 293 |[39m 			pr
+ocess[33m.[39mstdout
+[33m.[39mclearLine()[
+33m;[39m
+     [90m     |[39m 	
+		               
+[31m[1m^[22m[39m
+     [90m 294 |[39m 	
+		process[33m.[39mstd
+out[33m.[39mcursorTo(
+[35m0[39m)[33m;[39m
+     [90m 295 |[39m 	
+		console[33m.[39merr
+or(chalk[33m.[39mred(
+[32m`\nΓ£ÿ Error: ${er
+ror.message}`[39m))[3
+3m;[39m
+     [90m 296 |[39m 	
+	}[0m
+
+      at clearLine (com
+mands/generators.js:293
+:19)
+      at Object.chat (c
+ommands/generators.js:3
+00:3)
+      at 
+Object.<anonymous> (tes
+ts/workflow_cloud.test.
+js:80:9)
+
+  ΓùÅ CLI Advanced 
+Features ΓÇ║ 
+worldBridge command 
+works
+
+    expect(jest.fn()).t
+oHaveBeenCalledWith(...
+expected)
+
+    Expected: 
+"/user/quests/export", 
+Anything
+    Received: "/user/wo
+rld-builder/sync", 
+{"context": {"engine": 
+"godot", "genre": 
+"Puzzle", "name": 
+"Mazerunners"}}
+
+    Number of calls: 1
+
+    [0m [90m 85 
+|[39m         
+[36mconst[39m api 
+[33m=[39m require([3
+2m'../lib/api'[39m)[3
+3m;[39m
+     [90m 86 |[39m   
+      [36mawait[39m g
+enerators[33m.[39mwor
+ldBridge()[33m;[39m
+    [31m[1m>[22m[39
+m[90m 87 |[39m       
+  expect(api[33m.[39m
+post)[33m.[39mtoHaveB
+eenCalledWith([32m'/us
+er/quests/export'[39m
+[33m,[39m expect[33m.
+[39manything())[33m;
+[39m
+     [90m    |[39m   
+                       
+[31m[1m^[22m[39m
+     [90m 88 |[39m   
+  })[33m;[39m
+     [90m 89 |[39m 
+})[33m;[39m
+     [90m 90 
+|[39m[0m
+
+      at Object.toHaveB
+eenCalledWith (tests/wo
+rkflow_cloud.test.js:87
+:26)
+
+Test Suites: 1 failed, 
+1 total
+Tests:       3 failed, 
+4 passed, 7 total
+Snapshots:   0 total
+Time:        0.769 s, 
+estimated 1 s
+Ran all test suites 
+matching tests/workflow
+_cloud.test.js.
+GapsyAI is thinking... {"numFailedTestSuites":1,"numFailedTests":3,"numPassedTestSuites":0,"numPassedTests":4,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":7,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1773574065635,"success":false,"testResults":[{"assertionResults":[{"ancestorTitles":["CLI Workflow Commands"],"duration":17,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Workflow Commands explain command explains code logic","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773574066336,"status":"passed","title":"explain command explains code logic"},{"ancestorTitles":["CLI Workflow Commands"],"duration":6,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Workflow Commands explain returns early when no file given","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773574066354,"status":"passed","title":"explain returns early when no file given"},{"ancestorTitles":["CLI Workflow Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Workflow Commands optimize workflow command optimizes code","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773574066360,"status":"passed","title":"optimize workflow command optimizes code"},{"ancestorTitles":["CLI Translate Command"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Translate Command translate command converts code between languages","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773574066362,"status":"passed","title":"translate command converts code between languages"},{"ancestorTitles":["CLI Translate Command"],"duration":3,"failing":false,"failureDetails":[{"matcherResult":{"message":"expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: {\"data\": {\"content\": \"void Start() {}\", \"filename\": undefined}, \"endpoint\": \"/cli/translate\", \"prompt\": \"Translate the content of this file to multiple languages (ES, FR, DE, JP, HI):┬╖\nvoid Start() {}\", \"systemInstruction\": \"You are a professional game localizer. Maintain tone and variable placeholders.\"}","pass":true}}],"failureMessages":["Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: {\"data\": {\"content\": \"void Start() {}\", \"filename\": undefined}, \"endpoint\": \"/cli/translate\", \"prompt\": \"Translate the content of this file to multiple languages (ES, FR, DE, JP, HI):┬╖\nvoid Start() {}\", \"systemInstruction\": \"You are a professional game localizer. Maintain tone and variable placeholders.\"}\n    at Object.toHaveBeenCalled (E:\\new projects\\gapsyaicli\\tests\\workflow_cloud.test.js:67:33)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)"],"fullName":"CLI Translate Command translate returns early without file","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"startAt":1773574066364,"status":"failed","title":"translate returns early without file"},{"ancestorTitles":["CLI Advanced Features"],"duration":4,"failing":false,"failureDetails":[{}],"failureMessages":["TypeError: process.stdout.clearLine is not a function\n    at clearLine (E:\\new projects\\gapsyaicli\\commands\\generators.js:293:19)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at Object.chat (E:\\new projects\\gapsyaicli\\commands\\generators.js:300:3)\n    at Object.<anonymous> (E:\\new projects\\gapsyaicli\\tests\\workflow_cloud.test.js:80:9)"],"fullName":"CLI Advanced Features chat command works","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"startAt":1773574066372,"status":"failed","title":"chat command works"},{"ancestorTitles":["CLI Advanced Features"],"duration":3,"failing":false,"failureDetails":[{"matcherResult":{"message":"expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\nExpected: \"/user/quests/export\", Anything\nReceived: \"/user/world-builder/sync\", {\"context\": {\"engine\": \"godot\", \"genre\": \"Puzzle\", \"name\": \"Mazerunners\"}}\n\nNumber of calls: 1","pass":false}}],"failureMessages":["Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\nExpected: \"/user/quests/export\", Anything\nReceived: \"/user/world-builder/sync\", {\"context\": {\"engine\": \"godot\", \"genre\": \"Puzzle\", \"name\": \"Mazerunners\"}}\n\nNumber of calls: 1\n    at Object.toHaveBeenCalledWith (E:\\new projects\\gapsyaicli\\tests\\workflow_cloud.test.js:87:26)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)"],"fullName":"CLI Advanced Features worldBridge command works","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"startAt":1773574066384,"status":"failed","title":"worldBridge command works"}],"endTime":1773574066398,"message":"  ΓùÅ CLI Translate Command ΓÇ║ translate returns early without file\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: {\"data\": {\"content\": \"void Start() {}\", \"filename\": undefined}, \"endpoint\": \"/cli/translate\", \"prompt\": \"Translate the content of this file to multiple languages (ES, FR, DE, JP, HI):┬╖\n    void Start() {}\", \"systemInstruction\": \"You are a professional game localizer. Maintain tone and variable placeholders.\"}\n\n    \u001b[0m \u001b[90m 65 |\u001b[39m     test(\u001b[32m'translate returns early without file'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n     \u001b[90m 66 |\u001b[39m         \u001b[36mawait\u001b[39m analyzers\u001b[33m.\u001b[39mtranslate()\u001b[33m;\u001b[39m\n    \u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 |\u001b[39m         expect(ai\u001b[33m.\u001b[39mgenerate)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoHaveBeenCalled()\u001b[33m;\u001b[39m\n     \u001b[90m    |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n     \u001b[90m 68 |\u001b[39m     })\u001b[33m;\u001b[39m\n     \u001b[90m 69 |\u001b[39m })\u001b[33m;\u001b[39m\n     \u001b[90m 70 |\u001b[39m\u001b[0m\n\n      at Object.toHaveBeenCalled (tests/workflow_cloud.test.js:67:33)\n\n  ΓùÅ CLI Advanced Features ΓÇ║ chat command works\n\n    TypeError: process.stdout.clearLine is not a function\n\n    \u001b[0m \u001b[90m 291 |\u001b[39m \t\t\tlastResponse \u001b[33m=\u001b[39m cleanOutput\u001b[33m;\u001b[39m\n     \u001b[90m 292 |\u001b[39m \t\t} \u001b[36mcatch\u001b[39m (error) {\n    \u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 293 |\u001b[39m \t\t\tprocess\u001b[33m.\u001b[39mstdout\u001b[33m.\u001b[39mclearLine()\u001b[33m;\u001b[39m\n     \u001b[90m     |\u001b[39m \t\t\t               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n     \u001b[90m 294 |\u001b[39m \t\t\tprocess\u001b[33m.\u001b[39mstdout\u001b[33m.\u001b[39mcursorTo(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n     \u001b[90m 295 |\u001b[39m \t\t\tconsole\u001b[33m.\u001b[39merror(chalk\u001b[33m.\u001b[39mred(\u001b[32m`\\nΓ£ÿ Error: ${error.message}`\u001b[39m))\u001b[33m;\u001b[39m\n     \u001b[90m 296 |\u001b[39m \t\t}\u001b[0m\n\n      at clearLine (commands/generators.js:293:19)\n      at Object.chat (commands/generators.js:300:3)\n      at Object.<anonymous> (tests/workflow_cloud.test.js:80:9)\n\n  ΓùÅ CLI Advanced Features ΓÇ║ worldBridge command works\n\n    expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\n    Expected: \"/user/quests/export\", Anything\n    Received: \"/user/world-builder/sync\", {\"context\": {\"engine\": \"godot\", \"genre\": \"Puzzle\", \"name\": \"Mazerunners\"}}\n\n    Number of calls: 1\n\n    \u001b[0m \u001b[90m 85 |\u001b[39m         \u001b[36mconst\u001b[39m api \u001b[33m=\u001b[39m require(\u001b[32m'../lib/api'\u001b[39m)\u001b[33m;\u001b[39m\n     \u001b[90m 86 |\u001b[39m         \u001b[36mawait\u001b[39m generators\u001b[33m.\u001b[39mworldBridge()\u001b[33m;\u001b[39m\n    \u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 87 |\u001b[39m         expect(api\u001b[33m.\u001b[39mpost)\u001b[33m.\u001b[39mtoHaveBeenCalledWith(\u001b[32m'/user/quests/export'\u001b[39m\u001b[33m,\u001b[39m expect\u001b[33m.\u001b[39manything())\u001b[33m;\u001b[39m\n     \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n     \u001b[90m 88 |\u001b[39m     })\u001b[33m;\u001b[39m\n     \u001b[90m 89 |\u001b[39m })\u001b[33m;\u001b[39m\n     \u001b[90m 90 |\u001b[39m\u001b[0m\n\n      at Object.toHaveBeenCalledWith (tests/workflow_cloud.test.js:87:26)\n","name":"E:\\new projects\\gapsyaicli\\tests\\workflow_cloud.test.js","startTime":1773574065693,"status":"failed","summary":""}],"wasInterrupted":false}

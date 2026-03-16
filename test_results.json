@@ -1,0 +1,563 @@
+﻿node.exe :   
+console.log
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (  console.log   
+ :String) [], Remot    
+eException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+    
+    Generating 
+script...
+
+      at Object.log 
+[as script] (commands/g
+enerators.js:80:10)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as script] (commands/g
+enerators.js:89:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as script] (commands/g
+enerators.js:90:11)
+
+  console.log
+    
+    Generating game 
+idea...
+
+      at Object.log 
+[as idea] (commands/gen
+erators.js:97:10)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as idea] (commands/gen
+erators.js:104:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as idea] (commands/gen
+erators.js:105:11)
+
+  console.log
+    
+    Generating item...
+
+      at Object.log 
+[as item] (commands/gen
+erators.js:116:10)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as item] (commands/gen
+erators.js:124:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as item] (commands/gen
+erators.js:125:11)
+
+  console.log
+    
+    Generating enemy...
+
+      at Object.log 
+[as enemy] (commands/ge
+nerators.js:136:10)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as enemy] (commands/ge
+nerators.js:144:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as enemy] (commands/ge
+nerators.js:145:11)
+
+  console.log
+    
+    Generating story...
+
+      at Object.log 
+[as story] (commands/ge
+nerators.js:156:10)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as story] (commands/ge
+nerators.js:164:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as story] (commands/ge
+nerators.js:165:11)
+
+  console.log
+    
+    ≡ƒÆ░ GapsyAI 
+Economy Simulator 
+Running...
+
+      at Object.log 
+[as economy] (commands/
+analyzers.js:334:10)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as economy] (commands/
+analyzers.js:343:11)
+
+  console.log
+    
+    ≡ƒÄ« Generating 
+Gameplay Loop...
+
+      at Object.log 
+[as gameplay] (commands
+/analyzers.js:302:10)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as gameplay] (commands
+/analyzers.js:311:11)
+
+  console.log
+    
+    ≡ƒî│ Branching 
+Out: Skill Tree 
+Generation...
+
+      at Object.log 
+[as skilltree] (command
+s/analyzers.js:318:10)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as skilltree] (command
+s/analyzers.js:327:11)
+
+  console.log
+    
+    ≡ƒÄ¼ Scripting 
+Your Game Trailer...
+
+      at Object.log 
+[as trailer] (commands/
+analyzers.js:387:10)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as trailer] (commands/
+analyzers.js:396:11)
+
+  console.log
+    
+    ≡ƒô¥ Generating 
+Patch Notes...
+
+      at Object.log 
+[as patchnotes] (comman
+ds/analyzers.js:403:10)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as patchnotes] (comman
+ds/analyzers.js:414:11)
+
+  console.log
+    
+    Neural Architect 
+is designing 
+"inventory system" 
+blueprint...
+
+      at Object.log 
+[as blueprint] (command
+s/generators.js:487:10)
+
+  console.log
+    
+    Neural Blueprint:
+
+      at Object.log 
+[as blueprint] (command
+s/generators.js:495:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as blueprint] (command
+s/generators.js:496:11)
+
+  console.log
+    
+    Generating AI 
+commit message...
+
+      at Object.log 
+[as commit] (commands/g
+enerators.js:442:10)
+
+  console.log
+    No staged changes 
+found. Use "git add" 
+first.
+
+      at Object.log 
+[as commit] (commands/g
+enerators.js:447:12)
+
+  console.log
+    
+    Generating SFX/VFX 
+prompt...
+
+      at Object.log (co
+mmands/generators.js:34
+8:10)
+
+  console.log
+    
+    Prompt Out:
+
+      at Object.log (co
+mmands/generators.js:35
+6:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log (co
+mmands/generators.js:35
+7:11)
+
+  console.log
+    
+    Generating large 
+forest map...
+
+      at Object.log (co
+mmands/generators.js:36
+4:10)
+
+  console.log
+    
+    Map Layout:
+
+      at Object.log (co
+mmands/generators.js:37
+2:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log (co
+mmands/generators.js:37
+3:11)
+
+  console.log
+    
+    Generating voice 
+guide for Arthur...
+
+      at Object.log 
+[as voice] (commands/ge
+nerators.js:380:10)
+
+  console.log
+    
+    Voice Guide:
+
+      at Object.log 
+[as voice] (commands/ge
+nerators.js:388:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as voice] (commands/ge
+nerators.js:389:11)
+
+  console.log
+    
+    Visualizing 
+project UI Flow...
+
+      at Object.log 
+[as visualize] (command
+s/generators.js:396:10)
+
+  console.log
+    
+    Mermaid Diagram:
+
+      at Object.log 
+[as visualize] (command
+s/generators.js:405:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as visualize] (command
+s/generators.js:406:11)
+
+  console.log
+    
+    Generating asset 
+prompt...
+
+      at Object.log 
+[as assetPrompt] (comma
+nds/generators.js:176:1
+0)
+
+  console.log
+    
+    Output:
+
+      at Object.log 
+[as assetPrompt] (comma
+nds/generators.js:184:1
+1)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as assetPrompt] (comma
+nds/generators.js:185:1
+1)
+
+  console.log
+    
+    Generating unit 
+tests for utils.js...
+
+      at Object.log 
+[as testGen] (commands/
+generators.js:466:10)
+
+  console.log
+    
+    Generated Tests:
+
+      at Object.log 
+[as testGen] (commands/
+generators.js:479:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as testGen] (commands/
+generators.js:480:11)
+
+  console.log
+    
+    Migrating 
+player.cs to Unity 6...
+
+      at Object.log 
+[as migrate] (commands/
+generators.js:327:10)
+
+  console.log
+    
+    Migrated Code:
+
+      at Object.log 
+[as migrate] (commands/
+generators.js:340:11)
+
+  console.log
+    Mocked AI Output
+
+      at Object.log 
+[as migrate] (commands/
+generators.js:341:11)
+
+FAIL tests/generators_d
+eep.test.js
+  CLI Generators ΓÇö 
+Extended Commands
+    ΓêÜ script command 
+calls ai.generate with 
+correct endpoint (24 
+ms)
+    ΓêÜ idea command 
+calls ai.generate (2 
+ms)
+    ΓêÜ item command 
+generates loot item (1 
+ms)
+    ΓêÜ enemy command 
+generates enemy design 
+(1 ms)
+    ΓêÜ story command 
+generates narrative (2 
+ms)
+    ΓêÜ economy 
+command generates 
+economy balance (4 ms)
+    ΓêÜ gameplay 
+command generates core 
+loops (1 ms)
+    ΓêÜ skilltree 
+command generates RPG 
+trees (1 ms)
+    ΓêÜ trailer 
+command generates 
+trailer script (2 ms)
+    ΓêÜ patchnotes 
+command generates 
+release notes (37 ms)
+    ΓêÜ blueprint 
+command generates 
+system blueprint (1 ms)
+    ├ù commit command 
+generates git commit 
+message (41 ms)
+    ΓêÜ sfx command 
+generates SFX 
+description (6 ms)
+    ΓêÜ map command 
+generates world map 
+layout (2 ms)
+    ΓêÜ voice command 
+generates voice acting 
+direction (1 ms)
+    ΓêÜ visualize 
+command generates 
+visual concept (2 ms)
+    ΓêÜ assetPrompt 
+command generates 
+image prompt (1 ms)
+    ΓêÜ testGen 
+command generates unit 
+tests (1 ms)
+    ΓêÜ migrate 
+command generates 
+migration helper (3 ms)
+
+  ΓùÅ CLI Generators 
+ΓÇö Extended Commands 
+ΓÇ║ commit command 
+generates git commit 
+message
+
+    expect(jest.fn()).t
+oHaveBeenCalledWith(...
+expected)
+
+    Expected: 
+ObjectContaining 
+{"endpoint": 
+"/cli/generate/commit"}
+
+    Number of calls: 0
+
+    [0m [90m 128 
+|[39m         inquirer
+[33m.[39mprompt[33m.
+[39mmockResolvedValue(
+{ diff_summary[33m:[3
+9m [32m'added player 
+dash ability'[39m 
+})[33m;[39m
+     [90m 129 |[39m  
+       [36mawait[39m 
+generators[33m.[39mco
+mmit()[33m;[39m
+    [31m[1m>[22m[39
+m[90m 130 |[39m      
+   expect(ai[33m.[39m
+generate)[33m.[39mtoH
+aveBeenCalledWith(expec
+t[33m.[39mobjectConta
+ining({
+     [90m     |[39m  
+                       
+    
+[31m[1m^[22m[39m
+     [90m 131 |[39m  
+           
+endpoint[33m:[39m [3
+2m'/cli/generate/commit
+'[39m
+     [90m 132 |[39m  
+       }))[33m;[39m
+     [90m 133 |[39m  
+   })[33m;[39m[0m
+
+      at Object.toHaveB
+eenCalledWith (tests/ge
+nerators_deep.test.js:1
+30:29)
+
+Test Suites: 1 failed, 
+1 total
+Tests:       1 failed, 
+18 passed, 19 total
+Snapshots:   0 total
+Time:        0.738 s, 
+estimated 1 s
+Ran all test suites 
+matching tests/generato
+rs_deep.test.js.
+{"numFailedTestSuites":1,"numFailedTests":1,"numPassedTestSuites":0,"numPassedTests":18,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":19,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1773573921011,"success":false,"testResults":[{"assertionResults":[{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":24,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands script command calls ai.generate with correct endpoint","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921595,"status":"passed","title":"script command calls ai.generate with correct endpoint"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands idea command calls ai.generate","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921620,"status":"passed","title":"idea command calls ai.generate"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands item command generates loot item","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921623,"status":"passed","title":"item command generates loot item"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands enemy command generates enemy design","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921624,"status":"passed","title":"enemy command generates enemy design"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands story command generates narrative","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921625,"status":"passed","title":"story command generates narrative"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":4,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands economy command generates economy balance","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921627,"status":"passed","title":"economy command generates economy balance"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands gameplay command generates core loops","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921631,"status":"passed","title":"gameplay command generates core loops"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands skilltree command generates RPG trees","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921632,"status":"passed","title":"skilltree command generates RPG trees"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands trailer command generates trailer script","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921633,"status":"passed","title":"trailer command generates trailer script"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":37,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands patchnotes command generates release notes","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921635,"status":"passed","title":"patchnotes command generates release notes"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands blueprint command generates system blueprint","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921672,"status":"passed","title":"blueprint command generates system blueprint"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":41,"failing":false,"failureDetails":[{"matcherResult":{"message":"expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\nExpected: ObjectContaining {\"endpoint\": \"/cli/generate/commit\"}\n\nNumber of calls: 0","pass":false}}],"failureMessages":["Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\nExpected: ObjectContaining {\"endpoint\": \"/cli/generate/commit\"}\n\nNumber of calls: 0\n    at Object.toHaveBeenCalledWith (E:\\new projects\\gapsyaicli\\tests\\generators_deep.test.js:130:29)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)"],"fullName":"CLI Generators ΓÇö Extended Commands commit command generates git commit message","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"startAt":1773573921674,"status":"failed","title":"commit command generates git commit message"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":6,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands sfx command generates SFX description","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921721,"status":"passed","title":"sfx command generates SFX description"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands map command generates world map layout","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921727,"status":"passed","title":"map command generates world map layout"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands voice command generates voice acting direction","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921729,"status":"passed","title":"voice command generates voice acting direction"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":2,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands visualize command generates visual concept","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921730,"status":"passed","title":"visualize command generates visual concept"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands assetPrompt command generates image prompt","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921732,"status":"passed","title":"assetPrompt command generates image prompt"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":1,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands testGen command generates unit tests","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921733,"status":"passed","title":"testGen command generates unit tests"},{"ancestorTitles":["CLI Generators ΓÇö Extended Commands"],"duration":3,"failing":false,"failureDetails":[],"failureMessages":[],"fullName":"CLI Generators ΓÇö Extended Commands migrate command generates migration helper","invocations":1,"location":null,"numPassingAsserts":1,"retryReasons":[],"startAt":1773573921734,"status":"passed","title":"migrate command generates migration helper"}],"endTime":1773573921744,"message":"  ΓùÅ CLI Generators ΓÇö Extended Commands ΓÇ║ commit command generates git commit message\n\n    expect(jest.fn()).toHaveBeenCalledWith(...expected)\n\n    Expected: ObjectContaining {\"endpoint\": \"/cli/generate/commit\"}\n\n    Number of calls: 0\n\n    \u001b[0m \u001b[90m 128 |\u001b[39m         inquirer\u001b[33m.\u001b[39mprompt\u001b[33m.\u001b[39mmockResolvedValue({ diff_summary\u001b[33m:\u001b[39m \u001b[32m'added player dash ability'\u001b[39m })\u001b[33m;\u001b[39m\n     \u001b[90m 129 |\u001b[39m         \u001b[36mawait\u001b[39m generators\u001b[33m.\u001b[39mcommit()\u001b[33m;\u001b[39m\n    \u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 130 |\u001b[39m         expect(ai\u001b[33m.\u001b[39mgenerate)\u001b[33m.\u001b[39mtoHaveBeenCalledWith(expect\u001b[33m.\u001b[39mobjectContaining({\n     \u001b[90m     |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n     \u001b[90m 131 |\u001b[39m             endpoint\u001b[33m:\u001b[39m \u001b[32m'/cli/generate/commit'\u001b[39m\n     \u001b[90m 132 |\u001b[39m         }))\u001b[33m;\u001b[39m\n     \u001b[90m 133 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\n      at Object.toHaveBeenCalledWith (tests/generators_deep.test.js:130:29)\n","name":"E:\\new projects\\gapsyaicli\\tests\\generators_deep.test.js","startTime":1773573921076,"status":"failed","summary":""}],"wasInterrupted":false}

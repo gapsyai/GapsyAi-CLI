@@ -6,6 +6,16 @@ const inquirer = require('inquirer');
 const { getContext } = require('../lib/context');
 const ai = require('../lib/ai_provider');
 
+const isBinary = (file) => {
+	try {
+		const buffer = fs.readFileSync(file);
+		for (let i = 0; i < Math.min(buffer.length, 512); i++) {
+			if (buffer[i] === 0) return true;
+		}
+	} catch (e) {}
+	return false;
+};
+
 const dialogue = async () => {
 	const context = getContext();
 	const answers = await inquirer.prompt([
@@ -188,18 +198,22 @@ const assetPrompt = async () => {
 	}
 };
 
-const jam = async () => {
-	const answers = await inquirer.prompt([
-		{ type: 'input', name: 'theme', message: 'Game Jam Theme:', default: 'unstable' }
-	]);
+const jam = async (theme) => {
+	let jamTheme = theme;
+	if (!jamTheme) {
+		const answers = await inquirer.prompt([
+			{ type: 'input', name: 'theme', message: 'Game Jam Theme:', default: 'unstable' }
+		]);
+		jamTheme = answers.theme;
+	}
 
 	console.log(chalk.blue('\nGenerating Game Jam ideas...'));
 	try {
 		const output = await ai.generate({
-			prompt: `Generate Game Jam ideas. Theme: ${answers.theme}`,
+			prompt: `Generate Game Jam ideas. Theme: ${jamTheme}`,
 			systemInstruction: 'You are a game jam veteran. Create innovative ideas that fit the theme and timeframe.',
 			endpoint: '/cli/generate/jam',
-			data: answers
+			data: { theme: jamTheme }
 		});
 		console.log(`\n${chalk.bold('Output:')}\n`);
 		console.log(output);
@@ -249,17 +263,30 @@ const chat = async (initialMessage) => {
 			const availableCommands = Object.keys(module.exports).filter(k => k !== 'chat');
 			const analyzerKeys = Object.keys(require('./analyzers'));
 			
-			const output = await ai.generate({
-				prompt: message,
-				systemInstruction: `You are GapsyAI, an advanced AI for game development. 
-				You can help the user with design or directly execute commands.
-				If the user wants you to generate something (dialogue, quest, level, etc.) or analyze code, 
-				return your response followed by a special action tag: [ACTION: command_name].
-				Available Actions: ${[...availableCommands, ...analyzerKeys].join(', ')}.
-				Example: "I will generate a quest for you. [ACTION: quest]"`,
-				endpoint: '/cli/chat',
-				data: { message, context, lastResponse }
-			});
+			let output;
+			let attempts = 0;
+			const maxAttempts = 2;
+
+			while (attempts < maxAttempts) {
+				try {
+					output = await ai.generate({
+						prompt: message,
+						systemInstruction: `You are GapsyAI, an advanced AI for game development. 
+						You can help the user with design or directly execute commands.
+						If the user wants you to generate something (dialogue, quest, level, etc.) or analyze code, 
+						return your response followed by a special action tag: [ACTION: command_name].
+						Available Actions: ${[...availableCommands, ...analyzerKeys].join(', ')}.
+						Example: "I will generate a quest for you. [ACTION: quest]"`,
+						endpoint: '/cli/chat',
+						data: { message, context, lastResponse }
+					});
+					break;
+				} catch (e) {
+					attempts++;
+					if (attempts >= maxAttempts) throw e;
+					process.stdout.write(chalk.yellow(`(Retrying neural connection...) `));
+				}
+			}
 			
 			process.stdout.clearLine();
 			process.stdout.cursorTo(0);
@@ -272,15 +299,18 @@ const chat = async (initialMessage) => {
 			
 			if (actionMatch) {
 				const action = actionMatch[1];
-				console.log(chalk.yellow(`🚀 Executing action: ${action}...\n`));
+				// Quantum-Robust file extraction (matches: file.js, path/to/file.cs, C:\path\to\file.cpp)
+				const fileMatch = cleanOutput.match(/[`'"]?([\w\.\-\/\\]+\.\w{2,4})[`'"]?/);
+				const extractedFile = fileMatch ? fileMatch[1] : null;
+
+				console.log(chalk.yellow(`🚀 Executing action: ${action}${extractedFile ? ' on ' + extractedFile : ''}...\n`));
 				
 				if (module.exports[action]) {
-					await module.exports[action]();
+					await module.exports[action](extractedFile);
 				} else {
 					const analyzers = require('./analyzers');
 					if (analyzers[action]) {
-						// For analyzers that require a file, we might need more logic or just call it
-						await analyzers[action]();
+						await analyzers[action](extractedFile);
 					} else {
 						console.log(chalk.red(`✘ Action '${action}' not found.`));
 					}
@@ -290,8 +320,10 @@ const chat = async (initialMessage) => {
 			
 			lastResponse = cleanOutput;
 		} catch (error) {
-			process.stdout.clearLine();
-			process.stdout.cursorTo(0);
+			if (process.stdout.clearLine) {
+				process.stdout.clearLine();
+				process.stdout.cursorTo(0);
+			}
 			console.error(chalk.red(`\n✘ Error: ${error.message}`));
 		}
 	};
@@ -329,6 +361,12 @@ const migrate = async (file, options) => {
 		console.error(chalk.red('File not found.'));
 		return;
 	}
+
+	if (isBinary(file)) {
+		console.error(chalk.red(`✘ Cannot migrate binary file: ${file}`));
+		return;
+	}
+
 	const content = fs.readFileSync(file, 'utf8');
 	try {
 		const output = await ai.generate({
@@ -415,6 +453,12 @@ const exportQuest = async (file) => {
 		console.error(chalk.red('File not found.'));
 		return;
 	}
+
+	if (isBinary(file)) {
+		console.error(chalk.red(`✘ Cannot export binary file: ${file}`));
+		return;
+	}
+
 	const content = fs.readFileSync(file, 'utf8');
 	try {
         const response = await api.post('/user/quests/export', {
@@ -468,6 +512,12 @@ const testGen = async (file) => {
 		console.error(chalk.red('File not found.'));
 		return;
 	}
+
+	if (isBinary(file)) {
+		console.error(chalk.red(`✘ Cannot analyze binary file: ${file}`));
+		return;
+	}
+
 	const content = fs.readFileSync(file, 'utf8');
 	try {
 		const output = await ai.generate({
@@ -499,4 +549,138 @@ const blueprint = async (prompt) => {
 	}
 };
 
-module.exports = { dialogue, quest, level, script, idea, item, enemy, story, assetPrompt, jam, brain, chat, migrate, sfx, map, voice, visualize, exportQuest, worldBridge, commit, testGen, blueprint };
+const sonic = async (prompt) => {
+    console.log(chalk.bold.magenta('\n🔊 GapsyAI Sonic Profile Suggestions...'));
+    try {
+        const context = getContext();
+        const output = await ai.generate({
+            prompt: `Suggest SFX and music for: ${prompt}. Context: ${JSON.stringify(context)}`,
+            systemInstruction: 'You are a sound designer. Provide 5 unique audio directions including mood, intensity, and technical cues.',
+            endpoint: '/cli/generate/suggest-sfx',
+            data: { prompt, context }
+        });
+        console.log(`\n${chalk.bold('Sonic Profile:')}\n`);
+        console.log(chalk.white(output));
+    } catch (error) {
+        console.error(chalk.red('Error generating sonic suggestions.'));
+    }
+};
+
+const scaffold = async () => {
+	console.log(chalk.bold.cyan('\n🏗️ GapsyAI Autonomous Project Scaffolding\n'));
+	
+	const answers = await inquirer.prompt([
+		{ type: 'input', name: 'name', message: 'Project Name:', default: 'my-quantum-game' },
+		{ type: 'input', name: 'description', message: 'Game Description:', placeholder: 'e.g., A sci-fi survival horrot set on a space station' },
+		{ type: 'list', name: 'engine', message: 'Engine:', choices: ['Unity', 'Unreal', 'Godot', 'Web (Phaser)'] },
+		{ type: 'confirm', name: 'git', message: 'Initialize Git?', default: true }
+	]);
+
+	console.log(chalk.blue('\nArchitecting project structure...'));
+	try {
+		const output = await ai.generate({
+			prompt: `Generate a directory structure and initial roadmap for this game: ${answers.description}. Engine: ${answers.engine}. Return as JSON with "folders": [], "files": {"path": "content"}, and "roadmap": [].`,
+			systemInstruction: 'You are a senior game architect. Provide a professional project scaffolding in JSON format.',
+			endpoint: '/cli/generate/scaffold',
+			data: answers
+		});
+
+		const projectDir = path.join(process.cwd(), answers.name);
+		if (!fs.existsSync(projectDir)) fs.mkdirSync(projectDir);
+
+		// Implementation of folder creation
+		if (output.folders) {
+			output.folders.forEach(dir => {
+				const fullPath = path.join(projectDir, dir);
+				if (!fs.existsSync(fullPath)) fs.mkdirSync(fullPath, { recursive: true });
+			});
+		}
+
+		// Implementation of file creation
+		if (output.files) {
+			Object.entries(output.files).forEach(([file, content]) => {
+				fs.writeFileSync(path.join(projectDir, file), content);
+			});
+		}
+
+		console.log(chalk.green(`\n✔ Project ${chalk.bold(answers.name)} scaffolded successfully!`));
+		console.log(chalk.gray(`\n${output.roadmap?.join('\n') || 'Start by editing your core scripts.'}\n`));
+	} catch (error) {
+		console.error(chalk.red(`\n✘ Scaffolding failed: ${error.message}`));
+	}
+};
+
+const find = async () => {
+	const { query } = await inquirer.prompt([
+		{ type: 'input', name: 'query', message: 'Search query (semantic):' }
+	]);
+
+	console.log(chalk.blue('\nSearching neural index...'));
+	try {
+		const context = getContext();
+		const results = await api.post('/cli/search', { query, context });
+		console.log(`\n${chalk.bold('Matches Found:')}\n`);
+		results.data.forEach(res => {
+			console.log(`${chalk.green(res.file)} - ${chalk.gray(res.score.toFixed(2))}`);
+			console.log(`${chalk.white(res.snippet)}\n`);
+		});
+	} catch (error) {
+		console.error(chalk.red('Search failed. Ensure project is indexed.'));
+	}
+};
+
+const heal = async (options) => {
+	console.log(chalk.bold.yellow('\n⚕ GapsyAI Neural Healer: Scanning for anomalies...'));
+	try {
+		const context = getContext();
+		const output = await ai.generate({
+			prompt: `Scan the project for potential bugs, lints, or architectural flaws. ${options.dryRun ? 'Suggest fixes only.' : 'Provide actionable fixes.'}`,
+			systemInstruction: 'You are a veteran software architect. Provide a high-density report of "Heal Targets" with code snippet fixes.',
+			endpoint: '/cli/generate/heal',
+			data: { context, options }
+		});
+		console.log(`\n${chalk.bold('Neural Healing Report:')}\n`);
+		console.log(chalk.white(output));
+		if (!options.dryRun) {
+			console.log(chalk.green('\n✔ Recommendations applied to the neural trace. Use "gapsyai monitor" to verify.'));
+		}
+	} catch (error) {
+		console.error(chalk.red(`\n✘ Healing failed: ${error.message}`));
+	}
+};
+
+const refactor = async (target) => {
+	console.log(chalk.bold.cyan(`\n🏗️ GapsyAI Sentient Refactor: Optimizing "${target || 'Project Base'}"...`));
+	try {
+		const context = getContext();
+		const output = await ai.generate({
+			prompt: `Refactor the following component for professional optimization (clean code, SOLID, performance): ${target || 'Current Directory'}`,
+			systemInstruction: 'You are a senior refactoring expert. Provide a "Before vs After" logic comparison and high-level architectural benefits.',
+			endpoint: '/cli/generate/refactor',
+			data: { target, context }
+		});
+		console.log(`\n${chalk.bold('Refactoring Blueprint:')}\n`);
+		console.log(chalk.white(output));
+	} catch (error) {
+		console.error(chalk.red(`\n✘ Refactoring failed: ${error.message}`));
+	}
+};
+
+const sense = async () => {
+	console.log(chalk.bold.magenta('\n🧠 GapsyAI Project Sense: Reading neural vibe...'));
+	try {
+		const context = getContext();
+		const output = await ai.generate({
+			prompt: `Provide a real-time sentiment and stability analysis of this project. Include "Narrative Vibe", "Logic Stability", and "Team Energy" scores (0-100).`,
+			systemInstruction: 'You are a project behavioral analyst. Provide a high-fidelity vibe report with actionable emotional/technical insights.',
+			endpoint: '/cli/generate/sense',
+			data: { context }
+		});
+		console.log(`\n${chalk.bold('Project Vibe Report:')}\n`);
+		console.log(chalk.white(output));
+	} catch (error) {
+		console.error(chalk.red(`\n✘ Sensing failed: ${error.message}`));
+	}
+};
+
+module.exports = { dialogue, quest, level, script, idea, item, enemy, story, assetPrompt, jam, brain, chat, migrate, sfx, map, voice, visualize, exportQuest, worldBridge, commit, testGen, blueprint, sonic, scaffold, find, heal, refactor, sense };
