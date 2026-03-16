@@ -14,7 +14,7 @@ npm install -g gapsyaicli
 ```
 
 ### Authentication (Improved)
-GapsyAI 3.0.5 offers two ways to connect:
+GapsyAI 3.0.6 offers two ways to connect:
 
 1. **GapsyAI.com (Recommended)**: Connect to the GapsyAI cloud for visual reporting, RAG, and team features.
 2. **Direct API Connection (BYOK)**: Bring Your Own Key! Connect directly to Google Gemini, OpenAI, or local Ollama instances.
