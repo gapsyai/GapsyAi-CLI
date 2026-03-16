@@ -1,6 +1,6 @@
 {
   "name": "gapsyaicli",
-  "version": "2.0.0",
+  "version": "3.0.1",
   "description": "GapsyAI CLI - The definitive AI orchestration layer for game architects.",
   "main": "index.js",
   "homepage": "https://gapsyai.com",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "ai",
@@ -32,5 +32,9 @@
     "conf": "^10.2.0",
     "inquirer": "^8.2.4",
     "update-notifier": "^5.1.0"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^2.1.0",
+    "jest": "^30.3.0"
   }
 }
