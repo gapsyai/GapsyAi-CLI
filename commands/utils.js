@@ -63,22 +63,17 @@ const login = async () => {
 			const response = await api.get('/cli/usage', {
 				headers: { 'X-API-KEY': answers.apiKey }
 			});
+			const { plan } = response.data;
 			config.set('apiKey', answers.apiKey);
 			config.set('provider', 'gapsyai');
 			
-			const models = getModelsForProvider('gapsyai');
-			const { model } = await inquirer.prompt([
-				{
-					type: 'list',
-					name: 'model',
-					message: 'Select GapsyAI Model:',
-					choices: models
-				}
-			]);
+			// Auto-select model based on plan
+			const model = plan.toLowerCase().includes('pro') ? 'gapsy-v1-pro' : 'gapsy-v1-standard';
+			
 			config.set('model', model);
 			config.set('providerModels.gapsyai', model);
 
-			console.log(chalk.green('✔ API Key verified and Model selected successfully!'));
+			console.log(chalk.green(`✔ API Key verified! Plan: ${plan}. Model: ${model}`));
 		} catch (error) {
 			console.error(chalk.red('✘ Invalid API Key. Please check your token and try again.'));
 		}
